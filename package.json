@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@testing-library/react": "^8.0.9",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.3"
+  }
+}
