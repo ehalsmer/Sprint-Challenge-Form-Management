@@ -5,13 +5,21 @@ import User from "./User";
 import axios from 'axios';
 
 function RegistrationForm({ values, errors, touched, status }) {
-  const [users, setUsers] = useState([]);
+//   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    if (status) {
-      setUsers([...users, status]);
-    }
-  }, [status]);
+//   useEffect(() => {
+//     if (status) {
+//       setUsers([...users, status]);
+//     }
+//   }, [status]);
+
+    const [recipes, setRecipes] = useState([])
+
+    useEffect(() => {
+        if (status) {
+            setRecipes(status)
+        }
+    }, [status])
 
   return (
     <div>
@@ -22,9 +30,10 @@ function RegistrationForm({ values, errors, touched, status }) {
         {touched.password && errors.password && <p>{errors.password}</p>}
         <button>Submit!</button>
       </Form>
-      {users.map(user => (
+      {/* {users.map(user => (
         <User username={user.username} />
-      ))}
+      ))} */}
+      {recipes.map(recipe => (<div>{recipe.name}</div>))}
     </div>
   );
 }
@@ -53,6 +62,11 @@ const FormikForm = withFormik({
     })
     .then((response)=>{
         console.log('RESPONSE', response)
+        axios.get('http://localhost:5000/api/restricted/data')
+        .then((response)=>{
+            console.log('DATA RETRIEVED', response)
+            setStatus(response.data)
+        })
     })
   }
 })(RegistrationForm);
