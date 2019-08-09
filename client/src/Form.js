@@ -3,6 +3,8 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import User from "./User";
 import axios from 'axios';
+import RecipeCard from './RecipeCard';
+import { Container, Card, Header } from 'semantic-ui-react';
 
 function RegistrationForm({ values, errors, touched, status }) {
 //   const [users, setUsers] = useState([]);
@@ -28,12 +30,22 @@ function RegistrationForm({ values, errors, touched, status }) {
         {touched.username && errors.username && <p>{errors.username}</p>}
         <Field type="password" name="password" placeholder="Password" />
         {touched.password && errors.password && <p>{errors.password}</p>}
-        <button>Submit!</button>
+        <button>Submit</button>
       </Form>
       {/* {users.map(user => (
         <User username={user.username} />
       ))} */}
-      {recipes.map(recipe => (<div>{recipe.name}</div>))}
+<Container textAlign="center">
+          {status && <Header as="h2">My Recipes</Header>}
+          <Card.Group itemsPerRow="3" stackable centered>
+          {recipes.map(recipe => (<RecipeCard 
+            name={recipe.name}
+            course={recipe.course}
+            technique={recipe.technique}
+            ingredients={recipe.ingredients}
+            />))}
+          </Card.Group>
+</Container>
     </div>
   );
 }
