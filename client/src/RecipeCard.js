@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Header, Divider } from 'semantic-ui-react';
 
+
 function RecipeCard(props){
     return(
         <Card centered style={cardStyle}>
