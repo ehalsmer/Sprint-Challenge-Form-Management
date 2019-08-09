@@ -4,7 +4,7 @@ import { Card, Header, Divider } from 'semantic-ui-react';
 
 function RecipeCard(props){
     return(
-        <Card centered style={cardStyle}>
+        <Card centered style={cardStyle} data-testid="card">
             <Card.Content>
             <Card.Header>{props.name}</Card.Header>
             <Card.Meta>{props.course}</Card.Meta>
